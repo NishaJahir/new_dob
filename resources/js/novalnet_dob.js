@@ -72,7 +72,7 @@ $(document).ready( function() {
       }
           b = document.createElement("div");
           b.innerHTML = array_year[i].replace( val,"<strong>" + val + "</strong>" );          
-          b.innerHTML += "<input type='hidden' value='" + array_year[i] + "'>";
+          b.innerHTML += "<input type='hidden' class='year_active' value='" + array_year[i] + "'>";
           b.addEventListener("click", function(e) {
               input_val.value = this.getElementsByTagName("input")[0].value;
               closeAllLists();
