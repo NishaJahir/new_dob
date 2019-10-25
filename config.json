@@ -67,6 +67,14 @@
                   "defaultValue":""
                }
             },
+            "novalnet_forced_onhold_order_status":{  
+               "type":"inputText",
+               "required":false,
+               "label":"Config.forcedOnholdOrderStatusLabel",
+               "options":{  
+                  "defaultValue":""
+               }
+            },
             "novalnet_onhold_confirmation_status":{  
                "type":"inputText",
                "required":false,
