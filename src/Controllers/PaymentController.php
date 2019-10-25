@@ -176,8 +176,8 @@ class PaymentController extends Controller
             if('guarantee' == $guranteeStatus)
             {        
                 
-                 $requestData['nn_guarantee_month'] = strlen($requestData['nn_guarantee_month']) < 2 ? "0". $requestData['nn_guarantee_month'] : $requestData['nn_guarantee_month'];
-                 $birthday =    $requestData['nn_guarantee_year'].'-'.$requestData['nn_guarantee_month'].'-'.$requestData['nn_guarantee_date'];   
+                
+                 $birthday =  sprintf('%4d-%02d-%02d',$requestData['nn_guarantee_year'],$requestData['nn_guarantee_month'],$requestData['nn_guarantee_date']);
 
                 $force_status = ( $requestData['paymentKey'] == 'NOVALNET_SEPA' ) ? 'Novalnet.novalnet_sepa_payment_guarantee_force_active' : 'Novalnet.novalnet_invoice_payment_guarantee_force_active';               
                 
