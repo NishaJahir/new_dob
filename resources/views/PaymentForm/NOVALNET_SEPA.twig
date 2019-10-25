@@ -38,33 +38,35 @@
                                 <div>{{trans("Novalnet::PaymentMethod.ibanDesc")}}</div><br>
                                 <div><b>{{trans("Novalnet::PaymentMethod.creditorIdentifier")}} </div></b><br>
                                 <div><b>{{trans("Novalnet::PaymentMethod.note")}}</b> {{trans("Novalnet::PaymentMethod.noteDesc")}}</div></div><br>
-                                {% if nnGuaranteeStatus == "guarantee" %}
-                                <label for="nn_birthday">{{trans("Novalnet::PaymentMethod.birthdate_label")}}*</label>    
-                                <div class="row">
-									<div class="col-sm-4">
-										<input type="text" name="nn_guarantee_date" id="nn_guarantee_date" maxlength="2" placeholder="{{trans("Novalnet::PaymentMethod.day")}}" class="form-control" autocomplete="off">
-									</div>
-					 
-									<div class="col-sm-4">
-									   <select id="nn_guarantee_month" type="text" name="nn_guarantee_month" placeholder="{{trans("Novalnet::PaymentMethod.month")}}" class="form-control">
-									   <option value="0">{{trans("Novalnet::PaymentMethod.monthOption")}}</option>
-										{% for i in 1..12 %}
-											<option value="{{i}}">{{ trans("Novalnet::PaymentMethod.month#{i}") }}</option>
-										{% endfor %}
-										   
-									   </select>
-									 </div>
-					
-									<div class="col-sm-4 autocomplete">
-										<input type="text" name="nn_guarantee_year" id="nn_guarantee_year" maxlength="4" placeholder="{{trans("Novalnet::PaymentMethod.year")}}" class="form-control" autocomplete="off">
-									</div>
-								
-								</div> 
-                                {% endif %}
+                                
                             </div>
                         </div> 
                     </div>
-                </div>          
+                </div>  
+		{% if nnGuaranteeStatus == "guarantee" %}
+	
+	<div class="row">
+	         <div class="col-sm-12"><b><label for="nn_birthday">{{trans("Novalnet::PaymentMethod.birthdate_label")}}<span class="btn-danger">*</span></label></b></div>
+		<div class="col-sm-4">
+			<input type="text" name="nn_guarantee_date" id="nn_guarantee_date" maxlength="2" placeholder="{{trans("Novalnet::PaymentMethod.day")}}" class="form-control" autocomplete="off">
+		</div>
+
+		<div class="col-sm-4">
+		   <select id="nn_guarantee_month" type="text" name="nn_guarantee_month" placeholder="{{trans("Novalnet::PaymentMethod.month")}}" class="form-control">
+		   <option value="0">{{trans("Novalnet::PaymentMethod.monthOption")}}</option>
+			{% for i in 1..12 %}
+				<option value="{{i}}">{{ trans("Novalnet::PaymentMethod.month#{i}") }}</option>
+			{% endfor %}
+
+		   </select>
+		 </div>
+
+		<div class="col-sm-4 autocomplete">
+			<input type="text" name="nn_guarantee_year" id="nn_guarantee_year" maxlength="4" placeholder="{{trans("Novalnet::PaymentMethod.year")}}" class="form-control" autocomplete="off">
+		</div>
+
+	</div> 
+                                {% endif %}
         </fieldset>
     </div>
     <div class="modal-footer">
