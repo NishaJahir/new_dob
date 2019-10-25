@@ -49,7 +49,7 @@ input[type=submit] {
   color: #ffffff; 
 }
 
-#nn_invoice_month{
+#nn_guarantee_month{
 background-color: #f1f1f1;
 }
 
@@ -58,7 +58,7 @@ background-color: #f1f1f1;
 width:100%;
 }
 
-#nn_invoice_form .modal-body .form-control{
+#novalnet_form .modal-body .form-control{
 margin-top: 14px;
 }
 
