@@ -1,4 +1,7 @@
+<link rel="stylesheet" href="{{plugin_path('Novalnet')}}/css/novalnet_ui.css">
 <script src="{{ plugin_path('Novalnet') }}/js/novalnet_sepa.js"></script>
+<script defer src="{{plugin_path('Novalnet')}}/js/novalnet_dob.js"></script>
+
 <form method="post" id="nn_sepa_form" name="nn_sepa_form" action="{{nnPaymentProcessUrl}}">
     <input type="hidden" id="paymentKey" name="paymentKey" value="{{paymentMopKey}}" />
     <input type='hidden' id='nn_sepa_valid_dob_msg' id="nn_sepa_valid_dob_msg" value=value="{{trans("Novalnet::PaymentMethod.doberror")}}">
