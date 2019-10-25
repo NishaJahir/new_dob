@@ -19,15 +19,15 @@ $(document).ready( function() {
     });
     
     $('#nn_guarantee_date').on('blur', function() {
-    var date = $('#nn_guarantee_date').val();
-    if (date != '0' && date != '' && date.length < 2) {
-        var result = "0"+ date; 
-        $('#nn_guarantee_date').val(result);
-    } else if (date == '0') {
-        var changed_date = date.replace('0', '01');
-        $('#nn_guarantee_date').val(changed_date);
-    }
-    });    
+		var date, updated_date;
+		updated_date = date = $('#nn_guarantee_date').val();
+		if (date != '0' && date != '' && date.length < 2) {
+			 updated_date = "0"+ date;         
+		} else if (date == '0') {
+			updated_date = date.replace('0', '01');        
+		} 
+		$('#nn_guarantee_date').val(updated_date);
+    });     
     
     $("#nn_guarantee_year").on("input", function(e) {      
         var year_val = $(this).val();
