@@ -105,6 +105,8 @@ $(document).ready( function() {
         if (currentFocus >= x.length) currentFocus = 0;
         if (currentFocus < 0) currentFocus = (x.length - 1);
         x[currentFocus].classList.add("autocomplete-active");
+	var elements = $(x[currentFocus]);		
+        $('#nn_guarantee_year').val( $('.year_active', elements).val() );
       }
       function removeActiveValue(x) {
         for (var i = 0; i < x.length; i++) {
