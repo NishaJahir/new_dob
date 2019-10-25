@@ -175,14 +175,10 @@ class PaymentController extends Controller
             
             if('guarantee' == $guranteeStatus)
             {        
-                if($requestData['paymentKey'] == 'NOVALNET_SEPA') {
-                 $requestData['nn_sepa_birthday'] =    $requestData['nn_sepa_year'].'-'.$requestData['nn_sepa_month'].'-'.$requestData['nn_sepa_date'];  
-                } else {
-                 $requestData['nn_invoice_month'] = strlen($requestData['nn_invoice_month']) < 2 ? "0". $requestData['nn_invoice_month'] : $requestData['nn_invoice_month'];
-                 $requestData['nn_invoice_birthday'] =    $requestData['nn_invoice_year'].'-'.$requestData['nn_invoice_month'].'-'.$requestData['nn_invoice_date'];   
-                }
                 
-                $birthday     = ( $requestData['paymentKey'] == 'NOVALNET_SEPA' ) ? $requestData['nn_sepa_birthday'] : $requestData['nn_invoice_birthday'];
+                 $requestData['nn_guarantee_month'] = strlen($requestData['nn_guarantee_month']) < 2 ? "0". $requestData['nn_guarantee_month'] : $requestData['nn_guarantee_month'];
+                 $birthday =    $requestData['nn_guarantee_year'].'-'.$requestData['nn_guarantee_month'].'-'.$requestData['nn_guarantee_date'];   
+
                 $force_status = ( $requestData['paymentKey'] == 'NOVALNET_SEPA' ) ? 'Novalnet.novalnet_sepa_payment_guarantee_force_active' : 'Novalnet.novalnet_invoice_payment_guarantee_force_active';               
                 
                 // Proceed as Normal Payment if condition for birthdate doesn't meet as well as force is enable    
@@ -219,7 +215,7 @@ class PaymentController extends Controller
                     } else {                        
                     $serverRequestData['data']['payment_type'] = 'GUARANTEED_INVOICE';
                     $serverRequestData['data']['key']          = '41';
-                    $serverRequestData['data']['birth_date']   = $requestData['nn_invoice_birthday'];                           
+                    $serverRequestData['data']['birth_date']   = $birthday;                           
                     }
                 }
             }
