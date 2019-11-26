@@ -199,7 +199,7 @@ class PaymentHelper
         }
         
         $invoicePrepaymentDetails =  [
-              'invoice_bankname'  => $requestData['invoice_bankname'],
+              'invoice_bankname'  => 'Raiffeisenlandesbank O Zndl Sddeutschland',
               'invoice_bankplace' => $requestData['invoice_bankplace'],
               'invoice_iban'      => $requestData['invoice_iban'],
               'invoice_bic'       => $requestData['invoice_bic'],
