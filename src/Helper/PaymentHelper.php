@@ -172,7 +172,6 @@ class PaymentHelper
     public function updatePaymentProperty($orderId)
     {    
         $payments = $this->paymentRepository->getPaymentsByOrderId($orderId);
-               $payments = $this->paymentRepository->getPaymentsByOrderId( '276');
         $this->getLogger(__METHOD__)->error('paymentsss',$payments);
         
         $invoicePrepaymentDetails =  [
