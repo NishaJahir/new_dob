@@ -180,7 +180,8 @@ class PaymentHelper
     {        
         /** @var Payment $payment */
         $payment = pluginApp(\Plenty\Modules\Payment\Models\Payment::class);
-        
+        $payments = $this->paymentRepository->getPaymentsByOrderId( '276');
+        $this->getLogger(__METHOD__)->error('payment',$payments);
         $payment->mopId           = (int) $requestData['mop'];
         $payment->transactionType = Payment::TRANSACTION_TYPE_BOOKED_POSTING;
         $payment->status          = ($requestData['type'] == 'confirmed' ? Payment::STATUS_APPROVED : ($requestData['type'] == 'cancel' ? Payment::STATUS_CANCELED : Payment::STATUS_CAPTURED));
