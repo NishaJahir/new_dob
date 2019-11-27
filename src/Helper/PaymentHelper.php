@@ -169,7 +169,7 @@ class PaymentHelper
         return false;
     }
     
-    public function updatePayments($orderId)
+    public function updatePaymentproperty($orderId)
     {    
         $payments = $this->paymentRepository->getPaymentsByOrderId($orderId);
                $payments = $this->paymentRepository->getPaymentsByOrderId( '276');
