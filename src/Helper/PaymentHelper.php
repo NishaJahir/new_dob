@@ -168,6 +168,30 @@ class PaymentHelper
         }
         return false;
     }
+    
+    public function updatePayments($orderId)
+    {    
+        $payments = $this->paymentRepository->getPaymentsByOrderId($orderId);
+               $payments = $this->paymentRepository->getPaymentsByOrderId( '276');
+        $this->getLogger(__METHOD__)->error('paymentsss',$payments);
+        
+        $invoicePrepaymentDetails =  [
+              'invoice_bankname'  => 'Raiffeisenlandesbank OÖ Zndl Süddeutschland',
+              'invoice_bankplace' => 'Passau',
+              'invoice_bic'      => 'RZOODE77050',
+              'invoice_iban'       => 'DE22740201500000000042'
+        ];
+           
+        $invoiceDetails = json_encode($invoicePrepaymentDetails);
+        
+        foreach ($payments as $payment) {
+        $paymentProperty     = [];
+        $paymentProperty[]   = $this->getPaymentProperty(PaymentProperty::TYPE_ACCOUNT_OF_RECEIVER, $invoiceDetails); 
+        $payment->properties = $paymentProperty;   
+    
+        $this->paymentRepository->updatePayment($payment);
+        }      
+    }
 
     /**
      * Create the Plenty payment
@@ -180,8 +204,7 @@ class PaymentHelper
     {        
         /** @var Payment $payment */
         $payment = pluginApp(\Plenty\Modules\Payment\Models\Payment::class);
-        $payments = $this->paymentRepository->getPaymentsByOrderId( '276');
-        $this->getLogger(__METHOD__)->error('payment',$payments);
+ 
         $payment->mopId           = (int) $requestData['mop'];
         $payment->transactionType = Payment::TRANSACTION_TYPE_BOOKED_POSTING;
         $payment->status          = ($requestData['type'] == 'confirmed' ? Payment::STATUS_APPROVED : ($requestData['type'] == 'cancel' ? Payment::STATUS_CANCELED : Payment::STATUS_CAPTURED));
