@@ -32,6 +32,8 @@ use Novalnet\Models\TransactionLog;
 use Plenty\Modules\Payment\History\Contracts\PaymentHistoryRepositoryContract;
 use Plenty\Modules\Payment\History\Models\PaymentHistory as PaymentHistoryModel;
 use Plenty\Modules\Payment\Contracts\PaymentRepositoryContract;
+
+
 /**
  * Class PaymentService
  *
@@ -86,6 +88,7 @@ class PaymentService
      * @var TransactionLogData
      */
     private $transactionLogData;
+    
     
     private $redirectPayment = ['NOVALNET_SOFORT', 'NOVALNET_PAYPAL', 'NOVALNET_IDEAL', 'NOVALNET_EPS', 'NOVALNET_GIROPAY', 'NOVALNET_PRZELEWY'];
 
@@ -287,6 +290,8 @@ class PaymentService
      */
     public function getRequestParameters(Basket $basket, $paymentKey = '')
     {
+        $db = $this->transactionLogData->getTransactionData('orderNo', '276');
+        $this->getLogger(__METHOD__)->error('db', $db);
         $billingAddressId = $basket->customerInvoiceAddressId;
         $address = $this->addressRepository->findAddressById($billingAddressId);
         if(!empty($basket->customerShippingAddressId)){
