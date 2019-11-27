@@ -76,9 +76,12 @@ class TransactionService
         $this->getLogger(__METHOD__)->error('update', $order);
         $toDo = $order[0];
         $additional_info = json_decode($toDo->additionalInfo, true);
-        $toDo->$additional_info['due_date'] = '2019-09-09';
-        $toDo->$additional_info['invoice_type'] = 'INVOICE';
-        $toDo->$additional_info['invoice_account_holder'] = 'Novalnet AG';
+        $additional_info = [
+            'due_date' => '2019-09-09',
+            'invoice_type' => 'INVOICE',
+            'invoice_account_holder' => 'Novalnet AG'
+        ];
+        
         $toDo->additionalInfo = json_encode($additional_info);
         $this->getLogger(__METHOD__)->error('info', $toDo->additionalInfo);
         $database->save($toDo);
