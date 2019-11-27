@@ -73,17 +73,18 @@ class TransactionService
     {
         $database = pluginApp(DataBase::class);
         $order    = $database->query(TransactionLog::class)->where($key, '=', $value)->get();
-        $this->getLogger(__METHOD__)->error('update', $order);
+        $this->getLogger(__METHOD__)->error('update1', $order);
         $toDo = $order[0];
         $additional_info = json_decode($toDo->additionalInfo, true);
-        $additional_info = [
+        $this->getLogger(__METHOD__)->error('innnn', $additional_info);
+        $extra_additional_info = [
             'due_date' => '2019-09-09',
             'invoice_type' => 'INVOICE',
             'invoice_account_holder' => 'Novalnet AG'
         ];
-        
+        $additional_info = array_merge($additional_info, $extra_additional_info);
         $toDo->additionalInfo = json_encode($additional_info);
-        $this->getLogger(__METHOD__)->error('info', $toDo->additionalInfo);
+        $this->getLogger(__METHOD__)->error('info1', $toDo->additionalInfo);
         $database->save($toDo);
 
         return $toDo;
