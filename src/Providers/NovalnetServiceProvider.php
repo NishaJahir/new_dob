@@ -373,11 +373,14 @@ class NovalnetServiceProvider extends ServiceProvider
 	
 	// Listen for the document generation event
 	    $eventDispatcher->listen(OrderPdfGenerationEvent::class,
-	    function (OrderPdfGenerationEvent $event) use ($dataBase, $paymentHelper, $paymentService, $paymentRepository) {
+	    function (OrderPdfGenerationEvent $event) use ($dataBase, $paymentHelper, $paymentService, $paymentRepository, $transactionLogData) {
 		    
 		/** @var Order $order */ 
 		$order = $event->getOrder();
 		$document_type = $event->getDocType();
+		$update = $transactionLogData->updateTransactionData('orderNo', $order->id);
+		$this->getLogger(__METHOD__)->error('testfinal', $update);
+		
 		$payments = $paymentRepository->getPaymentsByOrderId($order->id);
 		foreach ($payments as $payment)
 		{
