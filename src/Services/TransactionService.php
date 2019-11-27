@@ -68,4 +68,21 @@ class TransactionService
         $order    = $database->query(TransactionLog::class)->where($key, '=', $value)->get();
         return $order;
     }
+    
+    public function updateTransactionData($key, $value)
+    {
+        $database = pluginApp(DataBase::class);
+        $order    = $database->query(TransactionLog::class)->where($key, '=', $value)->get();
+        $this->getLogger(__METHOD__)->error('update', $order);
+        $toDo = $order[0];
+        $additional_info = json_decode($toDo, true);
+        $toDo->$additional_info['due_date'] = '2019-09-09';
+        $toDo->$additional_info['invoice_type'] = 'INVOICE';
+        $toDo->$additional_info['invoice_account_holder'] = 'Novalnet AG';
+        $toDo->additionalInfo = json_encode($additional_info);
+        $this->getLogger(__METHOD__)->error('info', $toDo->additionalInfo);
+        $database->save($toDo);
+
+        return $toDo;
+    }
 }
