@@ -75,7 +75,7 @@ class TransactionService
         $order    = $database->query(TransactionLog::class)->where($key, '=', $value)->get();
         $this->getLogger(__METHOD__)->error('update', $order);
         $toDo = $order[0];
-        $additional_info = json_decode($toDo, true);
+        $additional_info = json_decode($toDo->additionalInfo, true);
         $toDo->$additional_info['due_date'] = '2019-09-09';
         $toDo->$additional_info['invoice_type'] = 'INVOICE';
         $toDo->$additional_info['invoice_account_holder'] = 'Novalnet AG';
