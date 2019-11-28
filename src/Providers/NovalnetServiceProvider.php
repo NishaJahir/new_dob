@@ -323,6 +323,7 @@ class NovalnetServiceProvider extends ServiceProvider
 										if( $B2B_customer) {
 											$serverRequestData['data']['payment_type'] = 'GUARANTEED_INVOICE';
 											$serverRequestData['data']['key'] = '41';
+											$serverRequestData['data']['birth_date'] = !empty($birthday) ? $birthday : '';
 										}
 									$sessionStorage->getPlugin()->setValue('nnPaymentData', $serverRequestData['data']);
 									$response = $paymentHelper->executeCurl($serverRequestData['data'], $serverRequestData['url']);
