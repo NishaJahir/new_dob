@@ -452,10 +452,11 @@ class CallbackController extends Controller
                                         if (!empty($this->aryCaptureParams['due_date'])) {
                                         $paymentData['due_date'] = $this->aryCaptureParams['due_date'];
                                         }
-                                        $paymentData['invoice_type'] = $bankDetails->invoice_type;
-                                        $paymentData['invoice_account_holder'] = $bankDetails->invoice_account_holder;
+                                        $paymentData['invoice_type'] = $db_details->invoice_type;
+                                        $paymentData['invoice_account_holder'] = $db_details->invoice_account_holder;
                                         $paymentData['payment_id'] = $db_details['payment_id'];
-                                }
+					$this->transaction->updateTransactionDatas($paymentData['due_date'], $paymentData['invoice_type'], $paymentData['invoice_account_holder']);                
+				}
                                         $paymentData['currency']    = $this->aryCaptureParams['currency'];
                                         $paymentData['paid_amount'] = (float) ($this->aryCaptureParams['amount'] / 100);
                                         $paymentData['tid']         = $this->aryCaptureParams['tid'];
@@ -467,7 +468,8 @@ class CallbackController extends Controller
 										$this->paymentHelper->createPlentyPayment($paymentData);
                     }
                     $this->paymentHelper->updatePayments($this->aryCaptureParams['tid'], $this->aryCaptureParams['tid_status'], $nnTransactionHistory->orderNo);
-                    return $this->renderTemplate($callbackComments);
+                    
+		    return $this->renderTemplate($callbackComments);
                 }  elseif('PRZELEWY24' == $this->aryCaptureParams['payment_type'] && (!in_array($this->aryCaptureParams['tid_status'], ['100','86']) || '100' != $this->aryCaptureParams['status'])){
                     // Przelewy24 cancel.
                     $callbackComments = '</br>' . sprintf($this->paymentHelper->getTranslatedText('callback_transaction_cancellation',$orderLanguage),date('d.m.Y'), date('H:i:s') ) . '</br>';
