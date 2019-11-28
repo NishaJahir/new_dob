@@ -454,8 +454,8 @@ class CallbackController extends Controller
                                         if (!empty($this->aryCaptureParams['due_date'])) {
                                         $paymentData['due_date'] = $this->aryCaptureParams['due_date'];
                                         }
-                                        $paymentData['invoice_type'] = $db_details->invoice_type;
-                                        $paymentData['invoice_account_holder'] = $db_details->invoice_account_holder;
+                                        $paymentData['invoice_type'] = $db_details['invoice_type'];
+                                        $paymentData['invoice_account_holder'] = $db_details['invoice_account_holder'];
                                         $paymentData['payment_id'] = $db_details['payment_id'];
 					$this->transaction->updateTransactionDatas('orderNo', $nnTransactionHistory->orderNo, $paymentData['due_date'], $paymentData['invoice_type'], $paymentData['invoice_account_holder']);                
 				}
