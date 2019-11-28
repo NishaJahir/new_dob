@@ -439,10 +439,12 @@ class CallbackController extends Controller
                             
                     } 
                     $db_details = $this->paymentService->getDatabaseValues($nnTransactionHistory->orderNo);
-                            if(in_array ($db_details['payment_id'], [ '27', '37', '40', '41'])) {
+                        $this->getLogger(__METHOD__)->error('caldb', $db_details);   
+			if(in_array ($db_details['payment_id'], [ '27', '37', '40', '41'])) {
                                 if (in_array($this->aryCaptureParams['tid_status'], ['91', '100'] ) && in_array ($db_details['payment_id'], [ '27', '41']) ) {
                                         $paymentDetails = $this->payment_details($nnTransactionHistory->orderNo, true);
-                                        $bankDetails = json_decode($paymentDetails);
+                                        $this->getLogger(__METHOD__)->error('calpay', $paymentDetails);
+					$bankDetails = json_decode($paymentDetails);
                                         $paymentData['invoice_bankname'] = $bankDetails->invoice_bankname;
                                         $paymentData['invoice_bankplace'] = $bankDetails->invoice_bankplace;
                                         $paymentData['invoice_iban'] = $bankDetails->invoice_iban;
