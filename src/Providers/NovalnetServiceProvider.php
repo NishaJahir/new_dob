@@ -224,6 +224,9 @@ class NovalnetServiceProvider extends ServiceProvider
 							if ($option->typeId == 12) {
 							    $name = $option->value;
 							}
+							if ($option->typeId == 9) {
+							    $birthday = $option->value;
+							}
 						}
 						$customerName = explode(' ', $name);
 						$firstname = $customerName[0];
