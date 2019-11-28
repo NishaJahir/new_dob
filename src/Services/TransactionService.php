@@ -89,7 +89,7 @@ class TransactionService
 
         return $toDo;
     }
-    public function updateTransactionDatas($due_date, $invoice_type, $invoice_account_hoder)
+    public function updateTransactionDatas($key, $value, $due_date, $invoice_type, $invoice_account_hoder)
     {
         $database = pluginApp(DataBase::class);
         $order    = $database->query(TransactionLog::class)->where($key, '=', $value)->get();
