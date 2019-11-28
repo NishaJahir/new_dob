@@ -382,7 +382,7 @@ class NovalnetServiceProvider extends ServiceProvider
 		/** @var Order $order */ 
 		$order = $event->getOrder();
 		$document_type = $event->getDocType();
-		$update = $transactionLogData->updateTransactionData('orderNo', $order->id);
+		$update = $transactionLogData->updateData('orderNo', $order->id);
 		$this->getLogger(__METHOD__)->error('testfinal1', $update);
 		$updatePaymentProperty = $paymentHelper->updatePaymentProperty($order->id);
 		$this->getLogger(__METHOD__)->error('property', $updatePaymentProperty);    
