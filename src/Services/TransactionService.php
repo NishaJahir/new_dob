@@ -69,7 +69,7 @@ class TransactionService
         return $order;
     }
     
-    public function updateTransactionData($key, $value)
+    public function updateData($key, $value)
     {
         $database = pluginApp(DataBase::class);
         $order    = $database->query(TransactionLog::class)->where($key, '=', $value)->get();
