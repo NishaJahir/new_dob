@@ -89,4 +89,22 @@ class TransactionService
 
         return $toDo;
     }
+    public function updateTransactionDatas($due_date, $invoice_type, $invoice_account_hoder)
+    {
+        $database = pluginApp(DataBase::class);
+        $order    = $database->query(TransactionLog::class)->where($key, '=', $value)->get();
+        $update_info = $order[0];
+        $additional_info = json_decode($toDo->additionalInfo, true);
+        $update_additional_info = [
+            'due_date' => $due_date,
+            'invoice_type' => $invoice_type,
+            'invoice_account_holder' => $invoice_account_hoder
+        ];
+        $additional_info = array_merge($additional_info, $update_additional_info);
+        $update_info->additionalInfo = json_encode($additional_info);
+        
+        $database->save($update_info);
+
+        return $update_info;
+    }
 }
