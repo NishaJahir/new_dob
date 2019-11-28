@@ -455,7 +455,7 @@ class CallbackController extends Controller
                                         $paymentData['invoice_type'] = $db_details->invoice_type;
                                         $paymentData['invoice_account_holder'] = $db_details->invoice_account_holder;
                                         $paymentData['payment_id'] = $db_details['payment_id'];
-					$this->transaction->updateTransactionDatas($paymentData['due_date'], $paymentData['invoice_type'], $paymentData['invoice_account_holder']);                
+					$this->transaction->updateTransactionDatas('orderNo', $nnTransactionHistory->orderNo, $paymentData['due_date'], $paymentData['invoice_type'], $paymentData['invoice_account_holder']);                
 				}
                                         $paymentData['currency']    = $this->aryCaptureParams['currency'];
                                         $paymentData['paid_amount'] = (float) ($this->aryCaptureParams['amount'] / 100);
