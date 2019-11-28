@@ -94,7 +94,7 @@ class TransactionService
         $database = pluginApp(DataBase::class);
         $order    = $database->query(TransactionLog::class)->where($key, '=', $value)->get();
         $update_info = $order[0];
-        $additional_info = json_decode($toDo->additionalInfo, true);
+        $additional_info = json_decode($update_info->additionalInfo, true);
         $update_additional_info = [
             'due_date' => $due_date,
             'invoice_type' => $invoice_type,
